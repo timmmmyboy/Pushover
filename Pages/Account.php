@@ -14,12 +14,14 @@
 
             function getContent()
             {
+                $this->gatekeeper(); // Logged-in users only
                 $t = \Idno\Core\site()->template();
                 $body = $t->draw('account/pushover');
                 $t->__(['title' => 'Pushover', 'body' => $body])->drawPage();
             }
 
             function postContent() {
+                $this->gatekeeper(); // Logged-in users only
                 $pushuser = $this->getInput('pushuserkey');
                 $pushapi = $this->getInput('pushapikey');
                 $pushdevice = $this->getInput('pushdevicename');
